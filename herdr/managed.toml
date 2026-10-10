@@ -20,3 +20,11 @@ command = "lazygit"
 description = "open lazygit"
 width = "80%"
 height = "80%"
+
+[[keys.command]]
+key = "prefix+alt+q"
+type = "popup"
+command = "tmux new-session -A -s ask 'claude --model claude-haiku-5-5'"
+description = "quick question to claude (haiku)"
+width = "80%"
+height = "80%"
