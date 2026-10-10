@@ -1,0 +1,4 @@
+hosts.toml
+.venv/
+__pycache__/
+*.operator-bak

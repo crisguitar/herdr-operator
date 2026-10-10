@@ -1,0 +1,15 @@
+[tools]
+python = "3.13"
+uv = "latest"
+
+[tasks.status]
+description = "Show which hosts are in sync (no changes made)"
+run = "uv run operator.py status"
+
+[tasks.diff]
+description = "Show the diff each host would receive (usage: mise run diff [host...])"
+run = "uv run operator.py diff"
+
+[tasks.apply]
+description = "Push herdr + tmux config to hosts (usage: mise run apply [host...])"
+run = "uv run operator.py apply"

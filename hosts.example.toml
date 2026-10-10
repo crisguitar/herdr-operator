@@ -1,0 +1,10 @@
+# Copy to hosts.toml (gitignored) and list your machines.
+# Remote hosts are ssh aliases/hostnames resolved by ~/.ssh/config.
+
+[hosts.local]
+local = true          # this machine, no ssh
+
+[hosts.example-server]
+# ssh = "user@host"   # optional; defaults to the table name
+# tmux = false        # optional; skip tmux on this host
+# herdr = false       # optional; skip herdr on this host

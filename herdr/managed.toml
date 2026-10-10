@@ -1,0 +1,22 @@
+# Settings the operator enforces on every herdr host.
+# Plain keys are set in place; every [[keys.command]] entry is owned by the
+# operator (tagged on the host, replaced wholesale on each apply).
+
+[keys]
+prefix = "ctrl+a"
+
+[[keys.command]]
+key = "prefix+alt+t"
+type = "popup"
+command = "tmux new-session -A -s scratch"
+description = "open scratch terminal"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+description = "open lazygit"
+width = "80%"
+height = "80%"
