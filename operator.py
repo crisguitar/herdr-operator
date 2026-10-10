@@ -7,6 +7,10 @@
   operator.py status [host...]   one-line sync state per host
   operator.py diff   [host...]   unified diff of pending changes
   operator.py apply  [host...]   write changes (backs up the old file)
+  operator.py versions [host...] installed herdr version per host
+  operator.py update [--handoff] [host...]
+                                 run `herdr update` on each host (handoff
+                                 asks a running server to hot-swap; opt-in)
 """
 import difflib
 import shlex
@@ -123,10 +127,19 @@ def plan(host):
     return items
 
 
+HERDR = 'PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH" herdr'
+
+
+def herdr_version(h):
+    return h.sh(f"{HERDR} --version 2>&1 || echo 'not installed'").strip()
+
+
 def main():
-    if len(sys.argv) < 2 or sys.argv[1] not in ("status", "diff", "apply"):
+    if len(sys.argv) < 2 or sys.argv[1] not in ("status", "diff", "apply", "versions", "update"):
         sys.exit(__doc__)
-    cmd, wanted = sys.argv[1], set(sys.argv[2:])
+    cmd, args = sys.argv[1], sys.argv[2:]
+    handoff = "--handoff" in args
+    wanted = set(a for a in args if a != "--handoff")
     hosts_file = ROOT / "hosts.toml"
     if not hosts_file.exists():
         sys.exit("hosts.toml missing - copy hosts.example.toml")
@@ -138,6 +151,18 @@ def main():
     failed = False
     for h in hosts:
         try:
+            if cmd in ("versions", "update"):
+                before = herdr_version(h)
+                if cmd == "update":
+                    out = h.sh(f"{HERDR} update{' --handoff' if handoff else ''} 2>&1").strip()
+                    after = herdr_version(h)
+                    state = "up to date" if before == after else f"{before} -> {after}"
+                    print(f"{h.name:<12} {state}")
+                    if before == after and out:
+                        print(f"{'':<12} {out.splitlines()[-1]}")
+                else:
+                    print(f"{h.name:<12} {before}")
+                continue
             for what, path, cur, new in plan(h):
                 tag = f"{h.name:<12} {what:<6}"
                 if cur == new:

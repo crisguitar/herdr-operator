@@ -13,3 +13,11 @@ run = "uv run operator.py diff"
 [tasks.apply]
 description = "Push herdr + tmux config to hosts (usage: mise run apply [host...])"
 run = "uv run operator.py apply"
+
+[tasks.versions]
+description = "Show the installed herdr version on each host"
+run = "uv run operator.py versions"
+
+[tasks.update]
+description = "Run `herdr update` on hosts (usage: mise run update [--handoff] [host...])"
+run = "uv run operator.py update"

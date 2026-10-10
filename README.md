@@ -4,6 +4,7 @@ Keeps herdr and tmux config in sync across my machines (this Mac + Linux boxes o
 
 - `herdr/managed.toml` – settings enforced in `~/.config/herdr/config.toml`. Plain keys are set in place; `[[keys.command]]` entries are owned by the operator (tagged `# herdr-operator:managed`, replaced on each apply). Everything else in the host's file is left alone.
 - `tmux/tmux.conf` – owned whole-file; written to `~/.config/tmux/tmux.conf` (tmux >= 3.2) or `~/.tmux.conf`.
+- `mise run versions` / `mise run update [--handoff] [host...]` – show or upgrade herdr itself (`herdr update`). `--handoff` asks a running server to hot-swap; off by default.
 - `hosts.toml` – gitignored; copy `hosts.example.toml`. Hosts are ssh aliases; `local = true` for this machine.
 
 ```
