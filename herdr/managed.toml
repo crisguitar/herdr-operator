@@ -16,7 +16,7 @@ height = "80%"
 [[keys.command]]
 key = "prefix+alt+g"
 type = "popup"
-command = "PATH=\"$HOME/.local/bin:$PATH\" lazygit"
+command = "tmux new-session -A -s \"lazygit-$(printf %s \"${PWD##*/}\" | tr -c 'A-Za-z0-9_-' '_')-$(printf %s \"$PWD\" | cksum | cut -d' ' -f1)\" -c \"$PWD\" 'PATH=\"$HOME/.local/bin:$PATH\" lazygit'"
 description = "open lazygit"
 width = "80%"
 height = "80%"
