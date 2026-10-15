@@ -4,20 +4,20 @@ uv = "latest"
 
 [tasks.status]
 description = "Show which hosts are in sync (no changes made)"
-run = "uv run operator.py status"
+run = "uv run herdr_operator.py status"
 
 [tasks.diff]
 description = "Show the diff each host would receive (usage: mise run diff [host...])"
-run = "uv run operator.py diff"
+run = "uv run herdr_operator.py diff"
 
 [tasks.apply]
 description = "Push herdr + tmux config to hosts (usage: mise run apply [host...])"
-run = "uv run operator.py apply"
+run = "uv run herdr_operator.py apply"
 
 [tasks.versions]
 description = "Show the installed herdr version on each host"
-run = "uv run operator.py versions"
+run = "uv run herdr_operator.py versions"
 
 [tasks.update]
 description = "Run `herdr update` on hosts (usage: mise run update [--handoff] [host...])"
-run = "uv run operator.py update"
+run = "uv run herdr_operator.py update"

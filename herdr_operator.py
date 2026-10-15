@@ -4,11 +4,11 @@
 # ///
 """herdr-operator: push managed herdr + tmux config to local and remote hosts.
 
-  operator.py status [host...]   one-line sync state per host
-  operator.py diff   [host...]   unified diff of pending changes
-  operator.py apply  [host...]   write changes (backs up the old file)
-  operator.py versions [host...] installed herdr version per host
-  operator.py update [--handoff] [host...]
+  herdr_operator.py status [host...]   one-line sync state per host
+  herdr_operator.py diff   [host...]   unified diff of pending changes
+  herdr_operator.py apply  [host...]   write changes (backs up the old file)
+  herdr_operator.py versions [host...] installed herdr version per host
+  herdr_operator.py update [--handoff] [host...]
                                  run `herdr update` on each host (handoff
                                  asks a running server to hot-swap; opt-in)
 """
